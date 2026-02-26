@@ -1,0 +1,82 @@
+ #include <GL/glut.h>
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+float X1, Y1, X2, Y2;
+
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+//
+//    float dx = X2 - X1;
+//    float dy = Y2 - Y1;
+//    float m = dy / dx;
+//
+//    float step;
+//    if(dx > dy)
+//        step = dx;
+//    else
+//        step = dy;
+//
+//    float x = X1;
+//    float y = Y1;
+glPointSize(10);
+    glBegin(GL_LINES);
+
+//    for(int i = 0; i <= step; i++)
+//    {
+//        if(m < 1)
+//        {
+//              glVertex2f(x, round(y));
+//
+//            x = x + 1;
+//            y =(y + m);
+//        }
+//        else if(m > 1)
+//        {
+//            glVertex2f(round(x),y);
+//
+//            x = x + (1/m);
+//            y = y + 1;
+//        }
+//        else
+//        {
+//            x = x + 1;
+//            y = y + 1;
+//        }
+//    }
+//
+
+  glVertex2f(X1,Y1);
+    glVertex2f(X2,Y2);
+    glEnd();
+    glFlush();
+}
+
+void init()
+{
+    glClearColor(1,1,1,1);
+    glColor3f(1,0,0);
+    gluOrtho2D(0,500,0,500);
+}
+
+int main(int argc, char** argv)
+{
+    cout<<"Enter X1 Y1: ";
+    cin>>X1>>Y1;
+
+    cout<<"Enter X2 Y2: ";
+    cin>>X2>>Y2;
+
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(500,500);
+    glutCreateWindow("DDA Line");
+
+    init();
+    glutDisplayFunc(display);
+    glutMainLoop();
+
+    return 0;
+}
